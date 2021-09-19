@@ -1,0 +1,56 @@
+html, body{
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.calculator-container{
+    position: relative;
+    height: 50%;
+    width: 25%;
+}
+
+#game-board{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    height: calc(100%*(5/7));
+    width: 100%;
+    position: relative;
+}
+
+.zero-button{
+    grid-column: 1 / 3;
+}
+
+button{
+    height: 100%;
+    box-sizing: border-box;
+    font-size: larger;
+    border-radius: 0%;
+}
+
+#calc-screen{
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    background-color: darkslategray;
+    color: white;
+    height: calc(100% * (2/7));
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 4em;
+    font-weight: lighter;
+    overflow: hidden;
+
+}
+
+.side-button{
+    background-color: orange;
+    color: white;
+}
