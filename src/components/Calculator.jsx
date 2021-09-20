@@ -18,8 +18,8 @@ function tryEval(expression){
     try{
         return eval(expression)
     } catch(e){
-        alert('PLEASE ENTER VALID EXPRESSION')
-        return '0'
+        // alert('PLEASE ENTER VALID EXPRESSION')
+        return expression.substr(0, expression.length - 1)
     }
 }
 
@@ -29,7 +29,8 @@ export default class Calculator extends Component{
         super()
         this.state = {
             total: '0',
-            numbers: ['0','1','2','3','4','5','6','7','8','9']
+            numbers: ['0','1','2','3','4','5','6','7','8','9'],
+            operations:['/','*','-','+']
         }
     }
 
@@ -49,16 +50,33 @@ export default class Calculator extends Component{
     }
 
     getResult(){
-        this.setState({total: roundDecimalPlaces(tryEval(this.state.total.replace('%','/100')), 5)})
+        console.log(this.state.total, typeof this.state.total)
+        this.setState({total: String(roundDecimalPlaces(tryEval(this.state.total.replace(/%/g,'*(1/100)')), 5))})
     }
 
     writeInScreen(value){
         // console.log(this.state.total.substr(1, this.state.total.length - 1))
 
-        if(this.state.total[0] == '0' && this.state.numbers.includes(value) && this.state.total.length <= 1)
-            this.setState({total: this.state.total.substr(1, this.state.total.length - 1) + value})
-        else 
-            this.setState({total: this.state.total + value})
+        // if(this.state.total[0] == '0' && this.state.numbers.includes(value) && this.state.total.length <= 1)
+        //     this.setState({total: this.state.total.substr(1, this.state.total.length - 1) + value})
+        // else 
+        this.setState({total: this.state.total + value}, () => this.checkValue())
+    }
+
+    checkValue(){
+        // console.log(this.state.total)
+        let totalAtual = this.state.total
+
+        if(totalAtual[0] == '0' && this.state.numbers.includes(totalAtual[1]))
+            this.setState({total: totalAtual.substr(1, totalAtual.length - 1)})
+        
+        totalAtual = this.state.total
+        
+        let penultimoElemento = totalAtual[totalAtual.length - 2]
+        let ultimoElemento = totalAtual[totalAtual.length - 1]
+        
+        if(this.state.operations.includes(penultimoElemento) && this.state.operations.includes(ultimoElemento))
+            this.setState({total: totalAtual.substr(0, totalAtual.length - 1)})
     }
 
     handleClick(value){

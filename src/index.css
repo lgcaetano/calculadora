@@ -1,17 +1,44 @@
+@import url(//db.onlinewebfonts.com/c/899514ebd390e894ad403011515cde6f?family=Helvetica+Neue);
+
+@font-face {font-family: "Helvetica Neue"; src: url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.eot"); src: url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.woff") format("woff"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.svg#Helvetica Neue") format("svg"); }
+
+
+
 html, body{
+    margin: 0;
     background-color: black;
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Helvetica Neue';
+}
+
+body{
+    background-image: url('https://as2.ftcdn.net/v2/jpg/01/86/68/73/1000_F_186687349_xY32FrDMwGzgSFzDA8Fd2GwErAFQzlBn.jpg');
+    background-size: 50%;
+    background-position: center center;
+
+}
+
+#root{
+    height: 60%;
+    width: 30%;
+    background-color: rgb(20, 20, 20, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .calculator-container{
+    overflow: hidden;
+    border-radius: 2%;
     position: relative;
-    height: 50%;
-    width: 25%;
+    height: calc(100%*(11/12));
+    width: calc(100%*(11/12));
 }
 
 #game-board{
@@ -24,21 +51,40 @@ html, body{
 }
 
 .zero-button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 50px;
     grid-column: 1 / 3;
 }
 
 button{
+    border: 2px solid;
+    background: white;
+    outline: inherit;
+    font: inherit;
+    box-shadow: 0;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: lightgrey;
     box-sizing: border-box;
-    font-size: larger;
+    font-size: 200%;
     border-radius: 0%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button:active{
+    background: lightgray;
 }
 
 #calc-screen{
     box-sizing: border-box;
-    padding: 10px;
+    padding-right: 20px;
     display: flex;
-    background-color: darkslategray;
+    background-color: rgb(30, 30, 30, 0.9);
+    
     color: white;
     height: calc(100% * (2/7));
     width: 100%;
@@ -53,4 +99,8 @@ button{
 .side-button{
     background-color: orange;
     color: white;
+}
+
+.side-button:active{
+    background-color: darkorange;
 }

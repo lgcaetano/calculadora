@@ -3,4 +3,4 @@ import React from "react";
 import Calculator from "./components/Calculator";
 import './index.css'
 
-ReactDom.render(<Calculator/>, document.querySelector('body'))
+ReactDom.render(<Calculator/>, document.querySelector('#root'))
