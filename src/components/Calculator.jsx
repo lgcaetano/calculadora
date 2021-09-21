@@ -19,7 +19,7 @@ function tryEval(expression){
         return eval(expression)
     } catch(e){
         // alert('PLEASE ENTER VALID EXPRESSION')
-        return expression.substr(0, expression.length - 1)
+        return tryEval(expression.substr(0, expression.length - 1))
     }
 }
 
@@ -50,21 +50,17 @@ export default class Calculator extends Component{
     }
 
     getResult(){
-        console.log(this.state.total, typeof this.state.total)
-        this.setState({total: String(roundDecimalPlaces(tryEval(this.state.total.replace(/%/g,'*(1/100)')), 5))})
+        // console.log(this.props.children)
+        this.setState({total: String(roundDecimalPlaces(tryEval(this.state.total.replace(/%/g,'*(1/100)')), 5))}, () => {
+            console.log(this.state.total)
+        })
     }
 
     writeInScreen(value){
-        // console.log(this.state.total.substr(1, this.state.total.length - 1))
-
-        // if(this.state.total[0] == '0' && this.state.numbers.includes(value) && this.state.total.length <= 1)
-        //     this.setState({total: this.state.total.substr(1, this.state.total.length - 1) + value})
-        // else 
         this.setState({total: this.state.total + value}, () => this.checkValue())
     }
 
     checkValue(){
-        // console.log(this.state.total)
         let totalAtual = this.state.total
 
         if(totalAtual[0] == '0' && this.state.numbers.includes(totalAtual[1]))
