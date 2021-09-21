@@ -2,11 +2,18 @@
 
 @font-face {font-family: "Helvetica Neue"; src: url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.eot"); src: url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.woff") format("woff"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/899514ebd390e894ad403011515cde6f.svg#Helvetica Neue") format("svg"); }
 
-
+:root{
+    --button-green: #00CA4E;
+    --button-yellow: #FF8D44;
+    --button-red: #FF605C;
+    --button-red-border: #c44846;
+    --button-yellow-border: #c76d35;
+    --button-green-border: #009439;
+}
 
 html, body{
     margin: 0;
-    background-color: black;
+    /* background-color: black; */
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -16,10 +23,7 @@ html, body{
 }
 
 body{
-    background-image: url('https://as2.ftcdn.net/v2/jpg/01/86/68/73/1000_F_186687349_xY32FrDMwGzgSFzDA8Fd2GwErAFQzlBn.jpg');
-    background-size: 25%;
-    background-position: center center;
-
+    background-image: linear-gradient(to right, #3A1C71, #D76D77, #FFAF7B)
 }
 
 #root{
@@ -36,6 +40,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: move;
 }
 
 .calculator-container{
@@ -63,7 +68,7 @@ body{
     justify-content: flex-start;
     align-items: center;
     padding-left: 20px;
-    grid-column: 1 / 3;
+    grid-column: span 2;
 }
 
 button{
@@ -80,7 +85,7 @@ button{
     box-sizing: border-box;
     font-size: 200%;
     border-radius: 0%;
-    
+    cursor: pointer;
 }
 
 button:active{
@@ -111,4 +116,55 @@ button:active{
 
 .side-button:active{
     background-color: darkorange;
+}
+
+#lights-container{
+    background: transparent;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: calc(100%*(1/24));
+    width: 30%;
+}
+
+.light{
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.red{
+    background: var(--button-red);
+    border: 1px solid;
+    border-color: var(--button-red-border);
+    
+}
+
+.red:hover{
+    box-shadow: 0 0 5px 3px var(--button-red);
+}
+
+
+.yellow{
+    background: var(--button-yellow);
+    border: 1px solid;
+    border-color: var(--button-yellow-border);
+}
+
+.yellow:hover{
+    box-shadow: 0 0 5px 3px var(--button-yellow);
+}
+
+.green{
+    background: var(--button-green);
+    border: 1px solid;
+    border-color: var(--button-green-border);
+}
+
+.green:hover{
+    box-shadow: 0 0 5px 3px var(--button-green);
 }

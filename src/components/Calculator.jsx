@@ -1,17 +1,22 @@
 import React from "react";
 import { Component } from "react";
 import Board from "./board";
+import Draggable from "react-draggable";
 
 function roundDecimalPlaces(number, numberOfPlaces){
     return Math.round(number * (10 ** numberOfPlaces)) / (10 ** numberOfPlaces) 
 }
 
-function findFirstNonZero(string){
-    let i;
-    for(i = 0; i < string.length; i++){
-        if(string != '0')
-            return i
+function lastNumberAlreadyHasPoint(expression){
+    const operations = ['/','*','-','+']
+
+    for(let i = expression.length - 1; i >= 0; i--){
+        if(expression[i] == '.')
+            return true
+        if(operations.includes(expression[i]))
+            return false
     }
+    return false
 }
 
 function tryEval(expression){
@@ -57,6 +62,8 @@ export default class Calculator extends Component{
     }
 
     writeInScreen(value){
+        if(value == '.' && lastNumberAlreadyHasPoint(this.state.total))
+            return    
         this.setState({total: this.state.total + value}, () => this.checkValue())
     }
 
@@ -76,11 +83,11 @@ export default class Calculator extends Component{
     }
 
     handleClick(value){
-        if(value == 'C')
+        if(value === 'C')
             this.clearScreen()
-        else if(value == '+-')
+        else if(value === '+-')
             this.invertSignalScreen()
-        else if(value == '=')
+        else if(value === '=')
             this.getResult()
         else
             this.writeInScreen(value)
@@ -89,10 +96,19 @@ export default class Calculator extends Component{
 
     render(){
         return (
-            <div className="calculator-container">
-                <div id="calc-screen">{this.state.total}</div>
-                <Board clickHandling={value => this.handleClick(value)}></Board>
-            </div>
+            <Draggable>
+                <div id="root">
+                    <div id="lights-container">
+                        <div className="light red"></div>
+                        <div className="light yellow"></div>
+                        <div className="light green"></div>
+                    </div>
+                    <div className="calculator-container">
+                        <div id="calc-screen">{this.state.total}</div>
+                        <Board clickHandling={value => this.handleClick(value)}></Board>
+                    </div>
+                </div>
+            </Draggable>
         )
     }
 } 
