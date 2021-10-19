@@ -84,11 +84,11 @@ export default class Calculator extends Component{
     }
 
     handleClick(value){
-        if(value ==== 'C')
+        if(value === 'C')
             this.clearScreen()
-        else if(value ==== '+-')
+        else if(value === '+-')
             this.invertSignalScreen()
-        else if(value ==== '=')
+        else if(value === '=')
             this.getResult()
         else
             this.writeInScreen(value)
