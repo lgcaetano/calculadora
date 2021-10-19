@@ -11,11 +11,11 @@ export default class Button extends Component{
     }
 
     getClass(value){
-        console.log('HEY')
+        // console.log('HEY')
         const commonButtons = ['C','%','1','2','3','4','5','6','7','8','9','+-','.']
         if(commonButtons.includes(value))
             return 'common-button'
-        else if(value == '0')
+        else if(value === '0')
             return 'zero-button'
         else    
             return 'side-button'

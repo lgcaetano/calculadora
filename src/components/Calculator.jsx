@@ -11,7 +11,7 @@ function lastNumberAlreadyHasPoint(expression){
     const operations = ['/','*','-','+']
 
     for(let i = expression.length - 1; i >= 0; i--){
-        if(expression[i] == '.')
+        if(expression[i] === '.')
             return true
         if(operations.includes(expression[i]))
             return false
@@ -32,6 +32,7 @@ export default class Calculator extends Component{
 
     constructor(){
         super()
+        // this.count = 0
         this.state = {
             total: '0',
             numbers: ['0','1','2','3','4','5','6','7','8','9'],
@@ -45,10 +46,10 @@ export default class Calculator extends Component{
 
     invertSignalScreen(){
 
-        if(this.state.total[0] == '0')
+        if(this.state.total[0] === '0')
             return
 
-        if(this.state.total[0] != '-')
+        if(this.state.total[0] !== '-')
             this.setState({total: '-' + this.state.total})
         else
             this.setState({total: this.state.total.substr(1, this.state.total.length - 1)})
@@ -57,12 +58,12 @@ export default class Calculator extends Component{
     getResult(){
         // console.log(this.props.children)
         this.setState({total: String(roundDecimalPlaces(tryEval(this.state.total.replace(/%/g,'*(1/100)')), 5))}, () => {
-            console.log(this.state.total)
+            // console.log(this.state.total)
         })
     }
 
     writeInScreen(value){
-        if(value == '.' && lastNumberAlreadyHasPoint(this.state.total))
+        if(value === '.' && lastNumberAlreadyHasPoint(this.state.total))
             return    
         this.setState({total: this.state.total + value}, () => this.checkValue())
     }
@@ -70,7 +71,7 @@ export default class Calculator extends Component{
     checkValue(){
         let totalAtual = this.state.total
 
-        if(totalAtual[0] == '0' && this.state.numbers.includes(totalAtual[1]))
+        if(totalAtual[0] === '0' && this.state.numbers.includes(totalAtual[1]))
             this.setState({total: totalAtual.substr(1, totalAtual.length - 1)})
         
         totalAtual = this.state.total
@@ -83,11 +84,11 @@ export default class Calculator extends Component{
     }
 
     handleClick(value){
-        if(value === 'C')
+        if(value ==== 'C')
             this.clearScreen()
-        else if(value === '+-')
+        else if(value ==== '+-')
             this.invertSignalScreen()
-        else if(value === '=')
+        else if(value ==== '=')
             this.getResult()
         else
             this.writeInScreen(value)
@@ -95,6 +96,7 @@ export default class Calculator extends Component{
 
 
     render(){
+        // console.log(++this.count)
         return (
             <Draggable>
                 <div id="root">
